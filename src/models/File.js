@@ -18,7 +18,7 @@ const File =new mongoose.Schema({
 
 //campo virtual não existe na table
 File.virtual('url').get(function(){
-  const url = process.env.url || 'http://localhost:8000'
+  const url = process.env.URL || 'http://localhost:8000'
 
    return `${url}/files/${encodeURIComponent(this.path)}`;
 })
