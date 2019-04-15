@@ -7,7 +7,6 @@ const app= express();
 
 app.use(cors());
 
-
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
@@ -23,7 +22,7 @@ io.on('connection', socket =>{
 mongoose.connect('mongodb://localhost:27017/oministack',{useNewUrlParser: true});
 
 //middleware
-app.use((req, res)=>{
+app.use((req, res, next)=>{
    req.io= io;
    return next();
 });
@@ -36,4 +35,4 @@ app.use('/files', express.static(path.resolve(__dirname, '..','tmp')));
 
 app.use(require('./routes'));
 
-server.listen(process.env.PORT || 4444);
+server.listen(process.env.PORT || 8000);
